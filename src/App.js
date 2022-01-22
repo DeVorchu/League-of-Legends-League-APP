@@ -1,9 +1,10 @@
+import Layout from "./containers/Layout";
 
 
-export default function App() {
-  return <div>
-
-  </div>;
+function App() {
+  return (
+      <Layout  />
+  );
 }
 
-
+export default App;

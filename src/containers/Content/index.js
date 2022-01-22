@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function index() {
-  return (<div>
-    FOOTER
-  </div>);
+  return (
+    <div>CONTENT</div> 
+  );
 }
