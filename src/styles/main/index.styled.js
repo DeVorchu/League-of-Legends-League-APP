@@ -18,7 +18,7 @@ export const MainStyle = createGlobalStyle`
     }
 
     table{
-    width: 95%;
+    min-width: 800px;
     margin-top: 60px;
     border: 1px ${colors.backgroundDark} solid;
     border-radius: 5px 5px 0 0;
@@ -32,7 +32,7 @@ export const MainStyle = createGlobalStyle`
 
     td{
         background-color: rgb(4, 8, 24);
-        padding: 12px;
+        padding: 6px 12px;
         border-bottom: 1px rgb(5, 30, 59) solid;
         text-align: center;
     }

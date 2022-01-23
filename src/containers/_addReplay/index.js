@@ -13,7 +13,7 @@ export default function Index() {
     const fileReader = new FileReader();
     fileReader.readAsText(e.target.files[0], "UTF-8")
 
-    fileReader.onload = e => {
+    fileReader.onload = async e => {
         let leagueData = e.target.result
         let startPos = leagueData.search('{"gameLength"')
         let result = leagueData.slice(startPos)
@@ -26,36 +26,43 @@ export default function Index() {
 
         
         setDemoData(JSON.parse(result))
+
+
+        if (demoData !== 'clear') {
+    
+          const data = await axios.post('http://crystal-api.cytr.us/api/test', {
+                  date: '',
+                  matchData: JSON.parse(result)
+                })
+      
+                setDemoData('clear')
+                
+      
+                console.log(demoData);
+                setUpdateStatus(data.status === 201 ? 'UPDATE SUCCES!' : 'UPDATE FAIL!')
+      
+                setTimeout(function(){
+                  setUpdateStatus('')
+              }, 3000);
+        } else {
+          setUpdateStatus('NO FILE')
+          setTimeout(function(){
+            setUpdateStatus('')
+        }, 3000);
+        }
+
+
         fileRef.target.value = null;
 
         
+        // http://crystal-api.cytr.us
+
 
     };
   };
 
   const SendDataToDB = async () =>{
-  if (demoData !== 'clear') {
-    
-    const data = await axios.post('http://localhost:1338/api/test', {
-            date: '',
-            matchData: demoData
-          })
 
-          setDemoData('clear')
-          
-
-          console.log(demoData);
-          setUpdateStatus(data.status === 201 ? 'UPDATE SUCCES!' : 'UPDATE FAIL!')
-
-          setTimeout(function(){
-            setUpdateStatus('')
-        }, 3000);
-  } else {
-    setUpdateStatus('NO FILE')
-    setTimeout(function(){
-      setUpdateStatus('')
-  }, 3000);
-  }
 }
 
 
