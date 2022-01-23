@@ -34,6 +34,7 @@ export const MainStyle = createGlobalStyle`
         background-color: rgb(4, 8, 24);
         padding: 12px;
         border-bottom: 1px rgb(5, 30, 59) solid;
+        text-align: center;
     }
 
     tr{

@@ -20,7 +20,7 @@ export default function index() {
         </AddTeamBox>        
       </AddTeamRow>
 
-      <ButtonStyled style={{marginTop: '20px'}} width='200px'>ADD</ButtonStyled>
+      <ButtonStyled style={{marginTop: '20px'}} width='200px' >ADD</ButtonStyled>
     </AddTeamWrapper>
   );
 }

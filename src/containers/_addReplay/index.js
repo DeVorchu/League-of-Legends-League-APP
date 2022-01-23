@@ -10,7 +10,6 @@ export default function Index() {
   const [demoData, setDemoData] = useState()
 
   const handleChange =  e => {
-    e.target.files[0]?  console.log(e.target.files[0]): console.log('NULL');
     const fileReader = new FileReader();
     fileReader.readAsText(e.target.files[0], "UTF-8")
 
@@ -24,6 +23,8 @@ export default function Index() {
         result = result.replace(']"', ']') 
         result = result.replace(/\\/g, '')
 
+
+        
         setDemoData(JSON.parse(result))
         fileRef.target.value = null;
 
@@ -33,8 +34,8 @@ export default function Index() {
   };
 
   const SendDataToDB = async () =>{
-
   if (demoData !== 'clear') {
+    
     const data = await axios.post('http://localhost:1338/api/test', {
             date: '',
             matchData: demoData
@@ -43,7 +44,7 @@ export default function Index() {
           setDemoData('clear')
           
 
-          console.log(data.status);
+          console.log(demoData);
           setUpdateStatus(data.status === 201 ? 'UPDATE SUCCES!' : 'UPDATE FAIL!')
 
           setTimeout(function(){
