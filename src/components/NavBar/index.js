@@ -2,16 +2,17 @@ import React from 'react';
 import { NavBarWrapper, NavItem, NavItemSpacer } from '../../styles/components/navBar.styled';
 import { FaPlus } from 'react-icons/fa';
 import NavBarItem from './navItem'
+import { Link } from 'react-router-dom';
 
 export default function index() {
   return (
     <NavBarWrapper>
-        <NavBarItem ico={<FaPlus />} text='REPLAY'/>
-        <NavBarItem ico={<FaPlus />} text='TEAM'/>
+        <Link to="/addreplay"><NavBarItem ico={<FaPlus />} text='REPLAY'/></Link>
+        <Link to="/addteam"><NavBarItem ico={<FaPlus />} text='TEAM'/></Link>
         <NavItemSpacer />
-        <NavBarItem text='PLAYER'/>
-        <NavBarItem text='STATS'/>
-        <NavBarItem text='MVP'/>
+        <Link to="/players"><NavBarItem text='PLAYER'/></Link>
+        <Link to="/stats"><NavBarItem text='STATS'/></Link>
+        <Link to="/mvps"><NavBarItem text='MVP'/></Link>
     </NavBarWrapper>
   );
 }

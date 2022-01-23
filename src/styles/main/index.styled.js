@@ -10,13 +10,50 @@ export const MainStyle = createGlobalStyle`
         color: ${colors.textColor};
         margin: 0;
         font-family: 'Play', sans-serif;
+        font-size: 14px;
+        a{
+            color: white;
+            text-decoration: none;
+        }
+    }
+
+    table{
+    width: 95%;
+    margin-top: 60px;
+    border: 1px ${colors.backgroundDark} solid;
+    border-radius: 5px 5px 0 0;
+    font-size: 14px;
+    border-spacing: 0px;
+    color: #999;
+    background-color: ${colors.buttonDark};
+
+
+    }
+
+    td{
+        background-color: rgb(4, 8, 24);
+        padding: 12px;
+        border-bottom: 1px rgb(5, 30, 59) solid;
+    }
+
+    tr{
+        border: 2px rgb(10, 84, 134) solid;
+    }
+
+    th{
+        
+        font-size: 14px;
+        padding: 5px;
+        color: #999;
+
+    
     }
 
     
 
 `
 
-export const ButtonStyled = styled.div`
+export const ButtonStyled = styled.label`
     padding: 7px 10px;
     background: ${colors.buttonDark};
     display: flex;
