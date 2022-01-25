@@ -1,15 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaFileVideo } from 'react-icons/fa';
-import { ButtonStyled, InputStyled } from '../../styles/main/index.styled';
+import { ButtonStyled, InputStyled, LabelStyled, SelectStyled } from '../../styles/main/index.styled';
 import { iconsLight } from '../../styles/colors.js'
 import axios from 'axios';
 import * as API from '../../api/api.config.js'
+import Select from 'react-select'
 
 export default function Index() {
 
   const [updateStatus, setUpdateStatus] = useState(false);
   const [demoData, setDemoData] = useState()
-  const [leagueNames, setleagueNames] = useState({team100: '', team200: '', date: '', leagueName: ''});
+  const [leagueNames, setleagueNames] = useState({team100: 'w', team200: '', date: '', leagueName: ''});
 
   const handleChange =  e => {
     const fileReader = new FileReader();
@@ -33,21 +34,22 @@ export default function Index() {
   };
 
   const SendDataToDB = async () =>{
-    
     if (demoData) {
       const data = await axios.post(`${API.baseUri}/matches`, {
         date: leagueNames.date,
         matchData: demoData,
         team100Name: leagueNames.team100,
-        team200Name: leagueNames.team100,
+        team200Name: leagueNames.team200,
         leagueName: leagueNames.leagueName
       })
   
      
       if (data.status === 200) {
         setUpdateStatus('UPDATE SUCCES!')
+        
         setleagueNames({team100: '', team200: '', date: '', leagueName: ''})
         setDemoData()
+
       } else {
         setUpdateStatus('UPDATE FAIL!')
       } 
@@ -64,7 +66,24 @@ export default function Index() {
     }
 }
 
+const [ssd, setssd] = useState();
+const [isSet, setisSet] = useState(false);
 
+const GetTeams = async () => {
+  const res = await axios.get(`${API.baseUri}/teams`)
+  setssd(res.data.ree)
+  setisSet(true)
+}
+
+const handleTeamOneChange = (e) =>{
+  setleagueNames({...leagueNames, team100: e.target.value})
+}
+  
+
+
+const handleTeamTwoChange = (e) =>{
+  setleagueNames({...leagueNames, team200: e.target.value})
+}
 
   const SummonerKDAHandler = (k, d, a) =>{
       if (d < 1) {
@@ -74,6 +93,14 @@ export default function Index() {
 }
 
     const fileRef = useRef();
+
+    useEffect(() => {
+      GetTeams()
+
+    }, []);
+    
+
+
 
   return (
     <>
@@ -89,13 +116,31 @@ export default function Index() {
 
       <div style={{display: 'flex'}}>
         <div style={{width:'300px', padding: '30px'}}>
-          TEAM #1 NAME<InputStyled type='text' style={{marginBottom: '20px'}} value={leagueNames.team100} onChange={e => setleagueNames({...leagueNames, team100: e.target.value})}/>
-          TEAM #2 NAME<InputStyled type='text' style={{marginBottom: '20px'}} value={leagueNames.team200} onChange={e => setleagueNames({...leagueNames, team200: e.target.value})}/>
-          MATCH DATE<InputStyled type='text' style={{marginBottom: '20px'}} placeholder='DD/MM/YYYY' value={leagueNames.date} onChange={e => setleagueNames({...leagueNames, date: e.target.value})}/>
-          LEAGUE NAME<InputStyled type='text' style={{marginBottom: '20px'}}  value={leagueNames.leagueName} onChange={e => setleagueNames({...leagueNames, leagueName: e.target.value})}/>
+
+          <LabelStyled>TEAM #1 NAME</LabelStyled>
+          {isSet? <SelectStyled onChange={handleTeamOneChange}  >
+              {ssd.map(el => <option value={el.name}>{el.name}</option> ) }
+          </SelectStyled> : <></>}
+
+          <LabelStyled>TEAM #2 NAME</LabelStyled>
+          {isSet? <SelectStyled onChange={handleTeamTwoChange}>
+              {ssd.map(el => <option value={el.name}>{el.name}</option> ) }
+          </SelectStyled> : <></>}
+
+          <LabelStyled>MATCH DATE</LabelStyled>
+          <InputStyled type='text' style={{marginBottom: '20px'}} placeholder='DD/MM/YYYY' value={leagueNames.date} onChange={e => setleagueNames({...leagueNames, date: e.target.value})}/>
+            
+          <LabelStyled>LEAGUE NAME</LabelStyled>
+          <InputStyled type='text' style={{marginBottom: '20px'}}  value={leagueNames.leagueName} onChange={e => setleagueNames({...leagueNames, leagueName: e.target.value})}/>
+         
+          
+
+  
         </div>
 
-        {demoData? demoData.statsJson.map(el =>  <> {el.TEAM == 100? 'TEAM #1 - ': 'TEAM #2 - '}{el.NAME} <br/> </> ) : <></>}
+        
+
+        {demoData? demoData.statsJson.map(el =>  <> {el.TEAM == 100? leagueNames.team100: leagueNames.team200} - {el.NAME} <br/> </> ) : <></>}
       </div>
 
       

@@ -1,16 +1,31 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import PlayersTable from '../../components/Data_Tables/playersTable';
+import MatchesTable from '../../components/Data_Tables/matchTable.js';
 import * as API from '../../api/api.config.js'
 
 export default function Index() {
 
   const [metchStatsData, setmetchStatsData] = useState();
+  const [teams, setteams] = useState();
+
+
+  
 
   const GetAllMatchData = async () =>{
-    const res = await axios.get(`${API.baseUri}/players`)
-    console.log(res.data);
-    setmetchStatsData(res.data.players)
+    const res = await axios.get(`${API.baseUri}/matches`)
+    console.log(res.data.matches);
+    setmetchStatsData(res.data.matches)
+    SortTeamsData(res.data.matches)
+  }
+
+  const SortTeamsData = (data) =>{
+    const Team1 = []
+    const Team2 = []
+
+    data.forEach(el => {
+      el.matchData.TEAM == 100? Team1.push(el) : Team2.push(el)
+      
+    });
   }
 
   useEffect(() => {
@@ -19,8 +34,10 @@ export default function Index() {
   
 
   return (
-    <div style={{display: 'flex', justifyContent: 'center'}}>
-      <PlayersTable playersData={metchStatsData} />
+    <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+
+      {metchStatsData? metchStatsData.map(el => <MatchesTable matchesData={el} />) : <></>}
+      
     </div>
   );
 }

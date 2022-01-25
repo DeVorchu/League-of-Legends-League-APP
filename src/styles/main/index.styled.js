@@ -15,7 +15,11 @@ export const MainStyle = createGlobalStyle`
             color: white;
             text-decoration: none;
         }
+
+        
     }
+
+    
 
     table{
     min-width: 800px;
@@ -83,4 +87,22 @@ export const InputStyled = styled.input`
     color: ${colors.textColor};
     width: ${props => props.width};
     border-radius: 3px;
+`
+
+export const SelectStyled = styled.select`
+    padding: 7px 10px;
+    background: ${colors.buttonDark};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    color: ${colors.textColor};
+    width: ${props => props.width};
+    border-radius: 3px;
+    min-width: 200px;
+`
+
+export const LabelStyled = styled.div`
+   margin-bottom: 5px;
+   margin-top: 15px;
 `

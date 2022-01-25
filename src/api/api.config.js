@@ -1,4 +1,4 @@
 
-//
-//http://vorczu.api.cytr.us/api
-export const baseUri = 'http://localhost:1338/api'
+const API = 'http://vorczu.api.cytr.us/api/'
+const LOCAL = 'http://localhost:1338/api'
+export const baseUri = API
