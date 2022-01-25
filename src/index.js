@@ -5,9 +5,8 @@ import { MainStyle } from './styles/main/index.styled';
 
 ReactDOM.render(
   <React.StrictMode>
-    <MainStyle>
-      <App />
-    </MainStyle> 
+    <MainStyle />  
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

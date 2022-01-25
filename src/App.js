@@ -1,9 +1,15 @@
+import {BrowserRouter as Router, Navigate} from "react-router-dom";
+import Layout from "./containers/Layout";
 
 
-export default function App() {
-  return <div>
 
-  </div>;
+function App() {
+  return (
+    <Router>
+      <Layout  />
+    </Router>
+      
+  );
 }
 
-
+export default App;
