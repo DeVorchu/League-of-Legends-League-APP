@@ -15,6 +15,6 @@ export const AddTeamRow = styled.div`
 `
 export const AddTeamBox = styled.div`    
     input{
-            margin-top: 5px;
-        }
+        margin-top: 5px;
+    }
 `

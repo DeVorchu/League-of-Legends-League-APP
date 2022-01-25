@@ -1,5 +1,6 @@
-import {BrowserRouter as Router} from "react-router-dom";
+import {BrowserRouter as Router, Navigate} from "react-router-dom";
 import Layout from "./containers/Layout";
+
 
 
 function App() {
