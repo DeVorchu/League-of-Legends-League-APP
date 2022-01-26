@@ -1,4 +1,5 @@
 import React from 'react';
+import { PlayerScoresTable } from '../../styles/components/playerTable';
 
 export default function playersTable(props) {
 
@@ -10,7 +11,7 @@ export default function playersTable(props) {
     }
 
   return (
-    <div >
+    <PlayerScoresTable >
          <table>
             <thead>
                 <tr>
@@ -26,45 +27,35 @@ export default function playersTable(props) {
                     <th>3KS</th>
                     <th>4KS</th>
                     <th>5KS</th>
-                    <th>Q</th>
-                    <th>W</th>
-                    <th>E</th>
-                    <th>R</th>
                     <th>Vision</th>
-                    <th>WK </th>
-                    <th>CW </th>
+
 
                 </tr>
             </thead>
             
             <tbody>
-            {props.playersData? props.playersData.map(el => 
+            {props.players? props.players.map(props => 
             <tr>
-                <td><span>{el.name}</span></td>
-                <td><img src={`https://cdn.communitydragon.org/latest/champion/${el.champion}/square` } width='22px' alt={el.champion} /></td>
-                <td>{el.kills} / {el.deaths} / {el.assists}</td>
-                <td>{(el.gold / 1000).toFixed(1)} K</td>
-                <td>{el.creepScore}</td>
-                <td>{el.drakes}</td>
-                <td>{el.barons}</td>
-                <td>{el.towers}</td>
-                <td>{el.dbKills}</td>
-                <td>{el.trKills}</td>
-                <td>{el.qdKills}</td>
-                <td>{el.ptKills}</td>
-                <td>{el.qSpell}</td>
-                <td>{el.wSpell}</td>
-                <td>{el.eSpell}</td>
-                <td>{el.rSpell}</td>
-                <td>{el.visionScore}</td>
-                <td>{el.killedWards}</td>
-                <td>{el.placedControlWards}</td>
+                <td><span>{props.name}</span></td>
+                <td><img src={`https://cdn.communitydragon.org/latest/champion/${props.champion}/square` } width='22px' alt={props.champion} /></td>
+                <td>{props.kills} / {props.deaths} / {props.assists}</td>
+                <td>{(props.gold / 1000).toFixed(1)} K</td>
+                <td>{props.creepScore}</td>
+                <td>{props.drakes}</td>
+                <td>{props.barons}</td>
+                <td>{props.towers}</td>
+                <td>{props.dbKills}</td>
+                <td>{props.trKills}</td>
+                <td>{props.qdKills}</td>
+                <td>{props.ptKills}</td>
+                <td>{props.visionScore}</td>
+
                 
 
 
             </tr>) : <></>}
             </tbody>
             </table>
-    </div>
+    </PlayerScoresTable>
   );
 }

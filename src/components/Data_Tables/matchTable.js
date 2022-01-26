@@ -1,18 +1,115 @@
-import React  from 'react';
-import { MatchWrapper, PlayerData, PlayerLabel } from '../../styles/components/matchData';
+import React, { useEffect, useState }  from 'react';
+import { TopInfoContainer, MidInfoContainer, MatchWrapper, BotInfoContainer, PlayerLabel,InfoContainer, TeamInfoBox, ScoreBox, BotInfoBox, MidInfoTeam, InfoTeamWrapper, TeamAvatarBorder, MatchScoresTable, AvatarHolder } from '../../styles/components/matchData';
+import * as colors from '../../styles/colors.js'
+import axios from 'axios';
+import * as API from '../../api/api.config.js'
 
 export default function MatchTable(props) {
 
+    const [teamInfo, setteamInfo] = useState();
+    const [singleMatchInfo, setmatchData] = useState(props.matchesData);
+
+    const GetTeamInfo = async () =>{
+        let arr = []
+        const res100 =  await axios.get(`${API.baseUri}/teams/${players.team100Name.replace(/\s+/g, '%20')}`)
+        arr.push(res100.data.ree[0])
+        const res200 =  await axios.get(`${API.baseUri}/teams/${players.team200Name.replace(/\s+/g, '%20')}`)
+        arr.push(res200.data.ree[0])
+
+        console.log(arr);
+        
+        setteamInfo(arr)
+
+
+        
+    }
+
+
     const players = props.matchesData
     const winner =  players.matchData[0].WIN
+   
+
+    
+    
+
+
+    useEffect(() => {
+        GetTeamInfo()
+        console.log(teamInfo);
+        console.log(singleMatchInfo);
+    }, []);
+    
     
   return (
     <MatchWrapper>
-        {winner? <h1>WYGRAŁ TEAM BLUE</h1> : <h1>WYGRAŁ TEAM RED</h1>}
+        
+
+        <InfoContainer >
+            
+            <TopInfoContainer>
+                {players.leagueName}
+            </TopInfoContainer>
+
+            <MidInfoContainer>
+                <InfoTeamWrapper>
+                    <TeamInfoBox>
+                        <AvatarHolder>
+                        {teamInfo? <img src={teamInfo[0].avatarLink} width='200px'/>: <></>} 
+                        </AvatarHolder>
+                        
+                        
+                        <TeamAvatarBorder/>
+                    </TeamInfoBox>
+                    <MidInfoTeam>
+                    {players.team100Name}
+                        <span>DIAMOND TIER</span>
+                    </MidInfoTeam>
+                </InfoTeamWrapper>
+                <ScoreBox>
+                   VS
+                </ScoreBox>
+                <InfoTeamWrapper>
+                    <TeamInfoBox>   
+                    <AvatarHolder>
+                        {teamInfo? <img src={teamInfo[1].avatarLink} width='200px'/>: <></>} 
+                        </AvatarHolder>
+                        <TeamAvatarBorder/>
+                    </TeamInfoBox>
+                    <MidInfoTeam>
+                        {players.team200Name}
+                        <span>DIAMOND TIER</span>
+                    </MidInfoTeam>
+                </InfoTeamWrapper>
+            </MidInfoContainer>
+
+            <BotInfoContainer>
+                    <BotInfoBox>
+                        DATE
+                        <span>{players.date}</span>
+                    </BotInfoBox>
+
+                    <BotInfoBox>
+                        TIME
+                        <span>10:30 PM</span>
+                    </BotInfoBox>
+
+
+
+                    <BotInfoBox>
+                        TIER
+                        <span>DIAMOND</span>
+                    </BotInfoBox>
+
+                    
+            </BotInfoContainer>
+        </InfoContainer>
+
+
+
         <PlayerLabel>
 
             
-            <table>
+            <MatchScoresTable>
             <thead>
                 <tr>
                     <th>Player</th>
@@ -29,15 +126,14 @@ export default function MatchTable(props) {
                     <th>5KS</th>
                     <th>Vision</th>
                     <th>WK </th>
-                    <th>CW </th>
 
                 </tr>
             </thead>
             
             <tbody>
-            {players.matchData? players.matchData.map(el => 
+            {singleMatchInfo.matchData? singleMatchInfo.matchData.map(el => 
             <tr>
-                <td><span style={el.TEAM == 100? {color: 'blue' }: {color: 'red'} }>{el.NAME}</span></td>
+                <td><span style={el.TEAM == 100? {color: 'red' ,display: 'flex' }: {color: colors.buttonLight, display: 'flex'}} >{el.NAME}</span></td>
                 <td><img src={`https://cdn.communitydragon.org/latest/champion/${el.SKIN}/square` } width='22px' alt={el.SKIN} /></td>
                 <td>{el.CHAMPIONS_KILLED} / {el.NUM_DEATHS} / {el.ASSISTS}</td>
                 <td>{(el.GOLD_EARNED / 1000).toFixed(1)} K</td>
@@ -51,13 +147,12 @@ export default function MatchTable(props) {
                 <td>{el.PENTA_KILLS}</td>
                 <td>{el.VISION_SCORE}</td>
                 <td>{el.WARD_KILLED}</td>
-                <td>{el.placedControlWards}</td>
                 
 
 
             </tr>) : <></>}
             </tbody>
-            </table>
+            </MatchScoresTable>
         </PlayerLabel>
     </MatchWrapper>
   );

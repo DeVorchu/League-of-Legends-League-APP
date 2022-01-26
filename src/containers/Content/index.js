@@ -15,7 +15,7 @@ export default function index() {
     <Routes>
       <Route path="/addteam" element={ <AddTeam/>}/>
       <Route path="/addreplay" element={ <AddReplay/>}/>
-      <Route path="/stats" element={ <>SOON TM</>}/>
+      <Route path="/stats" element={ <PlayersTable/>}/>
       <Route path="/matches" element={ <MatchsTable/>}/>
     </Routes>
     </ContentWrapper> 

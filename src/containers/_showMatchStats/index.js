@@ -33,11 +33,5 @@ export default function Index() {
   }, []);
   
 
-  return (
-    <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
-
-      {metchStatsData? metchStatsData.map(el => <MatchesTable matchesData={el} />) : <></>}
-      
-    </div>
-  );
+  return (   metchStatsData? metchStatsData.map(el => <MatchesTable matchesData={el} />) : <></>  );
 }
