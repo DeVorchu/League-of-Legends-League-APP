@@ -10,10 +10,9 @@ export default function index() {
         <Link to="/addreplay"><NavBarItem ico={<FaPlus />} text='REPLAY'/></Link>
         <Link to="/addteam"><NavBarItem ico={<FaPlus />} text='TEAM'/></Link>
         <NavItemSpacer />
-        <Link to="/players"><NavBarItem text='PLAYER'/></Link>
         <Link to="/matches"><NavBarItem text='MATCHES'/></Link>
         <Link to="/stats"><NavBarItem text='STATS'/></Link>
-        <Link to="/mvps"><NavBarItem text='MVP'/></Link>
+        {/* <Link to="/mvps"><NavBarItem text='MVP'/></Link> */}
     </NavBarWrapper>
   );
 }

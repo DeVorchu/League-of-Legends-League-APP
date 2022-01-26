@@ -42,10 +42,16 @@ export default function Index() {
         team200Name: leagueNames.team200,
         leagueName: leagueNames.leagueName
       })
+
+      const data2 = await axios.post(`${API.baseUri}/players`, {matchData: demoData} )
+     
+
+      
   
      
       if (data.status === 200) {
         setUpdateStatus('UPDATE SUCCES!')
+        
         
         setleagueNames({team100: '', team200: '', date: '', leagueName: ''})
         setDemoData()
