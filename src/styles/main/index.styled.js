@@ -19,7 +19,7 @@ export const MainStyle = createGlobalStyle`
         
     }
 
-    
+/*     
 
     table{
     min-width: 800px;
@@ -52,7 +52,7 @@ export const MainStyle = createGlobalStyle`
         color: #999;
 
     
-    }
+    } */
 
     
 
