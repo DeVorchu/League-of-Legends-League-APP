@@ -1,11 +1,12 @@
 import React from 'react';
-import { HeaderWrapper } from '../../styles/main/header.styled';
-import NavBar from '../../components/NavBar'
+import Header from '../../components/_Header';
+import NavBar from '../../components/_NavBar'
+import * as Config from '../../cfg/appText.js'
 
 export default function index() {
   return (
-  <HeaderWrapper>
-    <NavBar />
-  </HeaderWrapper>
+  <Header>
+    <NavBar config={Config}/>
+  </Header>
   );
 }

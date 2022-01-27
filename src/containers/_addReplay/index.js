@@ -10,7 +10,7 @@ export default function Index() {
 
   const [updateStatus, setUpdateStatus] = useState(false);
   const [demoData, setDemoData] = useState()
-  const [leagueNames, setleagueNames] = useState({team100: 'w', team200: '', date: '', leagueName: ''});
+  const [leagueNames, setleagueNames] = useState({team100: '', team200: '', date: '', leagueName: ''});
 
   const handleChange =  e => {
     const fileReader = new FileReader();
@@ -35,6 +35,7 @@ export default function Index() {
 
   const SendDataToDB = async () =>{
     if (demoData) {
+
       const data = await axios.post(`${API.baseUri}/matches`, {
         date: leagueNames.date,
         matchData: demoData,
@@ -43,7 +44,7 @@ export default function Index() {
         leagueName: leagueNames.leagueName
       })
 
-      const data2 = await axios.post(`${API.baseUri}/players`, {matchData: demoData} )
+      
      
 
       
@@ -55,10 +56,12 @@ export default function Index() {
         
         setleagueNames({team100: '', team200: '', date: '', leagueName: ''})
         setDemoData()
-
+        const data2 = await axios.post(`${API.baseUri}/players`, {matchData: demoData} )
       } else {
         setUpdateStatus('UPDATE FAIL!')
       } 
+
+      
             
       setTimeout(function(){
         setUpdateStatus('')        

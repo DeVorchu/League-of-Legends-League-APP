@@ -23,7 +23,7 @@ export default function Index() {
     <MatchesWrapper>
       <div style={{ display: 'flex', alignItems: 'center', marginBottom: '30px'}}>
         <InputStyled style={{ marginRight: '20px'}} value={searchBar.name} onChange={e=> setsearchBar({...searchBar, name: e.target.value})}/>
-        <ButtonStyled onClick={SearchHandler}> LOOK FOR A PLAYR</ButtonStyled>
+        <ButtonStyled onClick={SearchHandler}> LOOK FOR A PLAYER</ButtonStyled>
       </div>
 
       {showTable? playerData ?<DisplayPlayerTable players={playerData}/> : <></> : <></>}
