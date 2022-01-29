@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeaderWrapper } from '../../styles/components/header/header';
+import { HeaderWrapper } from '../../styles/components/header';
 
 export default function Header(props) {
   return (

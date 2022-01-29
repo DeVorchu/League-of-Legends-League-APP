@@ -51,10 +51,11 @@ export const NavLogoIconsContainer = styled.div`
 `
 export const NavLinks = styled.div`    
     display: flex;
-   
+    justify-content: flex-end;
+    min-width: 50vw;
 `
 export const LinkItems = styled.div`    
-    margin-left: 20px;
+    margin-left: 40px;
     height: 6vh;
     display: flex;
     align-items: center;
