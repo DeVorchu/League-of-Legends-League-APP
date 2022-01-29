@@ -3,7 +3,7 @@ import { LayoutWrapper } from '../styles/main/layout.styled';
 import Header from '../containers/Header'
 import Footer from '../containers/Footer'
 import Content from '../containers/Content'
-import image from '../assets/uc.png'
+import Banner from '../components/_Baner'
 
 export default function Layout() {
   return (
@@ -11,6 +11,7 @@ export default function Layout() {
     <LayoutWrapper>
       
       <Header />
+      <Banner />
       <Content/>
       <Footer />
       

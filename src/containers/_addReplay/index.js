@@ -4,7 +4,6 @@ import { ButtonStyled, InputStyled, LabelStyled, SelectStyled } from '../../styl
 import { iconsLight } from '../../styles/colors.js'
 import axios from 'axios';
 import * as API from '../../api/api.config.js'
-import Select from 'react-select'
 
 export default function Index() {
 
