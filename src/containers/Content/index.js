@@ -6,6 +6,7 @@ import AddTeam from '../_addTeam'
 import PlayersTable from '../_showPlayers'
 import MatchsTable from '../_showMatchStats'
 import AddTeamBanner from '../../components/_RegisterTeamBanner'
+import UpcommingMatches from '../../components/_upcommingMatches'
 
 
 export default function index() {
@@ -21,9 +22,9 @@ export default function index() {
           <Route path="/matches" element={ <MatchsTable/>}/>
         </Routes> */}
       </ContentLeft>
-
+        
       <ContentRight>
-   
+      <UpcommingMatches />
       </ContentRight>
     
     </ContentWrapper> 
