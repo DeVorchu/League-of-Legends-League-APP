@@ -61,11 +61,11 @@ export const MainStyle = createGlobalStyle`
 
 export const ButtonStyled = styled.label`
     padding: 7px 10px;
-    background: ${colors.buttonDark};
+    font-size: 12px;
+    background: ${colors.buttonLight};
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 5px;
     width:  ${props => props.width};
 
     &:hover{

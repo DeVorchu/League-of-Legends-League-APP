@@ -20,7 +20,6 @@ export const BannerContent = styled.div`
     background-image: url('${wallBg}');
     background-size: cover;
     background-position-y: -320px;
-    filter: brightness(.7);
     position: relative;
 `
 
